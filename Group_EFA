@@ -1,0 +1,33 @@
+```{r}
+# Predictor Variables
+X <- StudentDep[, c("Gender", "Age", "Academic_Pressure", "Work_Pressure", "CGPA", "Dietary_Habits", "Financial_Stress", "Family_History_of_Mental_Illness")]
+
+# Response Variables
+Y <- StudentDep[, c("Depression", "Study_Satisfaction", "Job_Satisfaction", "Sleep_Duration")]
+
+# Converting to numeric variables
+X[] <- lapply(X, function(col) as.numeric((col)))
+Y[] <- lapply(Y, function(col) as.numeric((col)))
+
+# Removing rows with NA
+X <- na.omit(X)
+Y <- na.omit(Y)
+
+# Keeping columns with zero variance
+vars <- sapply(X, var, na.rm = TRUE)
+X <- X[, vars > 0]
+varsY <- sapply(Y, var, na.rm = TRUE)
+Y <- Y[, !is.na(varsY) & varsY > 0]
+
+# Correlation matrices
+RX <- cor(X, use = "pairwise.complete.obs")
+RY <- cor(Y, use = "pairwise.complete.obs")
+
+# Eigenvalues
+EigX <- eigen(RX)
+EigY <- eigen(RY)
+
+EigX$values
+EigY$values
+
+```

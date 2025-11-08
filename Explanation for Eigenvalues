@@ -1,0 +1,1 @@
+From what we can see for the eigenvalues for predictor variables, the first four components have eigenvalues greater than one. Whereas the last three numbers are less than one, which shows us that the seven predictor variables overlap and help capture patterns along the predictors. It also reduces the complexity of the data. 
